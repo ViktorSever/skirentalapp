@@ -1,6 +1,6 @@
 package com.example.skirental.util
 
-import com.example.skirental.model.BookingRequest
+import com.example.skirental.model.Booking
 import com.example.skirental.model.EquipmentType
 import com.example.skirental.model.Gender
 
@@ -19,9 +19,9 @@ data class BookingDraft(
     val fullName: String = "",
     val phone: String = "",
     val date: String = "",
-    val timeSlot: String = ""
+    val timeSlot: String = "",
 ) {
-    fun toBookingRequest(): BookingRequest? {
+    fun toBookingRequest(): Booking? {
         val equipment = equipmentType ?: return null
         val genderVal = gender ?: return null
         val ageVal = age ?: return null
@@ -31,7 +31,7 @@ data class BookingDraft(
         val hatVal = hatSizeCm ?: return null
         if (fullName.isBlank() || phone.isBlank() || date.isBlank() || timeSlot.isBlank()) return null
 
-        return BookingRequest(
+        return Booking(
             equipmentType = when (equipment) {
                 EquipmentType.SKIS -> "skis"
                 EquipmentType.SNOWBOARD -> "snowboard"

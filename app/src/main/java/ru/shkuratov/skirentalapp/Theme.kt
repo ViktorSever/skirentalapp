@@ -8,30 +8,41 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val Primary = Color(0xFF007AFF)
-private val BackgroundLight = Color(0xFFFFFFFF)
-private val BackgroundDark = Color(0xFF121212)
-private val Secondary = Color(0xFF666666)
-private val Placeholder = Color(0xFF999999)
+// Палитра в духе гор/снега/отдыха
+private val MountainBlue = Color(0xFF3B82F6)      // спокойный горный синий
+private val DeepMountainBlue = Color(0xFF1D4ED8)  // более насыщённый акцент
+private val SnowWhite = Color(0xFFFFFFFF)        // чисто белый фон
+private val IceGray = Color(0xFFE5E7EB)          // ледяной серый для бордеров
+private val TextPrimary = Color(0xFF0F172A)      // тёмный текст на светлом фоне
+private val TextSecondary = Color(0xFF6B7280)    // вторичный текст
+private val RelaxMint = Color(0xFF10B981)        // мятный акцент (отдых/комфорт)
 
 private val LightColors = lightColorScheme(
-    primary = Primary,
+    primary = MountainBlue,
     onPrimary = Color.White,
-    background = BackgroundLight,
-    onBackground = Color.Black,
-    surface = BackgroundLight,
-    onSurface = Color.Black,
-    secondary = Secondary
+    secondary = RelaxMint,
+    onSecondary = Color.White,
+    background = SnowWhite,
+    onBackground = TextPrimary,
+    surface = Color.White,
+    onSurface = TextPrimary,
+    surfaceVariant = IceGray,
+    outline = IceGray,
+    outlineVariant = IceGray,
 )
 
 private val DarkColors = darkColorScheme(
-    primary = Primary,
+    primary = DeepMountainBlue,
     onPrimary = Color.White,
-    background = BackgroundDark,
-    onBackground = Color.White,
-    surface = BackgroundDark,
-    onSurface = Color.White,
-    secondary = Secondary
+    secondary = RelaxMint,
+    onSecondary = Color.Black,
+    background = Color(0xFF020617),
+    onBackground = Color(0xFFE5E7EB),
+    surface = Color(0xFF020617),
+    onSurface = Color(0xFFE5E7EB),
+    surfaceVariant = Color(0xFF111827),
+    outline = Color(0xFF374151),
+    outlineVariant = Color(0xFF4B5563),
 )
 
 @Composable

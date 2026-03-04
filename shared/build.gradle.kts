@@ -25,6 +25,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
                 implementation("io.ktor:ktor-client-core:2.3.8")
                 implementation("io.insert-koin:koin-core:3.5.3")
+                implementation("androidx.core:core-ktx:1.17.0")
             }
         }
         val commonTest by getting
@@ -36,6 +37,8 @@ kotlin {
                 implementation("com.squareup.retrofit2:converter-gson:2.9.0")
                 implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
                 implementation("io.ktor:ktor-client-okhttp:2.3.8")
+                implementation("com.google.firebase:firebase-firestore-ktx:24.5.0")
+                implementation("androidx.preference:preference-ktx:1.2.1")
             }
         }
         val androidUnitTest by getting

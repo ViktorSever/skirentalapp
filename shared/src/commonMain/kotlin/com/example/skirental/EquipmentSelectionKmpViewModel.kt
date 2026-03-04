@@ -18,8 +18,7 @@ class EquipmentSelectionKmpViewModel :
             is EquipmentSelectionIntent.SelectEquipment -> {
                 setState {
                     (it as? EquipmentSelectionState.Content)?.copy(
-                        selectedEquipment = intent.type,
-                        isNextEnabled = true
+                        selectedEquipment = intent.type, isNextEnabled = true
                     ) ?: it
                 }
             }

@@ -24,7 +24,7 @@ abstract class MviStore<Intent, State, Effect>(
     private val _effects = MutableSharedFlow<Effect>()
     val effects: SharedFlow<Effect> = _effects.asSharedFlow()
 
-    protected fun setState(reducer: (State) -> State) {
+    fun setState(reducer: (State) -> State) {
         _state.update(reducer)
     }
 
