@@ -137,11 +137,11 @@ private fun AppNavHost(
         // ✅ Auth & Register
         composable(route = Routes.Auth) {
             AuthScreen(
-                onLoginSuccess = { phone ->
-                    navController.navigate(Routes.EquipmentSelection) {
-                        popUpTo(Routes.Auth) { inclusive = true }
-                    }
-                },
+                onLoginSuccess = { _ ->
+                navController.navigate(Routes.EquipmentSelection) {
+                    popUpTo(Routes.Auth) { inclusive = true }
+                }
+            },
                 onNavigateToRegister = { navController.navigate(Routes.Register) },
                 store = authStore
             )
@@ -157,7 +157,6 @@ private fun AppNavHost(
             )
         }
 
-        // ✅ Equipment Selection
         composable(route = Routes.EquipmentSelection) {
             val vm: EquipmentSelectionViewModel = viewModel()
             val state by vm.state.collectAsState()
