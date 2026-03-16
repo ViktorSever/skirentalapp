@@ -2,15 +2,6 @@ package com.example.skirental.model
 
 import kotlinx.serialization.Serializable
 
-enum class EquipmentType {
-    SKIS,
-    SNOWBOARD
-}
-
-enum class Gender {
-    MALE,
-    FEMALE
-}
 
 @Serializable
 data class EquipmentResponse(

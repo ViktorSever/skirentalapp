@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml:2:13-83
-INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml:2:13-83
+ADDED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml:2:13-83
+INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml:2:13-83
 	package
-		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml
+		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml
 	xmlns:android
-		ADDED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml:2:23-81
+		ADDED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml:2:23-81
 uses-sdk
-INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml reason: use-sdk injection requested
-INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml
-INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml
+INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml reason: use-sdk injection requested
+INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml
+INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml
 	android:targetSdkVersion
-		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml
+		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml
 	android:minSdkVersion
-		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest10189623272386812012.xml
+		INJECTED from /Users/viktor/KMP/SkiRentalApp/shared/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest5090041972965394001.xml

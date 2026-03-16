@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
@@ -24,12 +25,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.skirental.intent.PersonalDetailsIntent
 import com.example.skirental.state.PersonalDetailsState
 import kotlinx.coroutines.launch
+import ru.shkuratov.skirentalapp.screens.BookingTopBar
+import ru.shkuratov.skirentalapp.screens.PrimaryButton
 import java.time.Instant
 import java.time.ZoneId
 
@@ -49,136 +53,121 @@ fun PersonalDetailsScreen(
             .fillMaxSize()
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        BookingTopBar(
-            title = "Your Details",
-            onBack = onBack
-        )
-
-        androidx.compose.material3.LinearProgressIndicator(
-            progress = 1f,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(2.dp),
-            trackColor = MaterialTheme.colorScheme.surface,
-            color = MaterialTheme.colorScheme.primary
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        OutlinedTextField(
-            value = state.fullName,
-            onValueChange = { onIntent(PersonalDetailsIntent.FullNameChanged(it)) },
-            label = { Text("Full Name") },
-            placeholder = {
-                Text(
-                    "Enter Full Name",
-                    color = androidx.compose.ui.graphics.Color(0xFF999999)
-                )
-            },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            singleLine = true
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        OutlinedTextField(
-            value = state.phone,
-            onValueChange = { onIntent(PersonalDetailsIntent.PhoneChanged(it)) },
-            label = { Text("Phone Number") },
-            placeholder = {
-                Text(
-                    "Phone Number",
-                    color = androidx.compose.ui.graphics.Color(0xFF999999)
-                )
-            },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
-            singleLine = true
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Rental Schedule",
-            style = MaterialTheme.typography.bodySmall.copy(
-                color = MaterialTheme.colorScheme.secondary
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            BookingTopBar(
+                title = "Ваши данные", onBackClick = onBack
             )
-        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+            LinearProgressIndicator(
+                progress = 1f,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(2.dp),
+                trackColor = MaterialTheme.colorScheme.surface,
+                color = MaterialTheme.colorScheme.primary
+            )
 
-        DateField(
-            label = "Pickup Date",
-            value = state.date,
-            onClick = {
-                showDatePicker.value = true
-            }
-        )
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(8.dp))
+            OutlinedTextField(
+                value = state.fullName,
+                onValueChange = { onIntent(PersonalDetailsIntent.FullNameChanged(it)) },
+                label = { Text("ФИО") },
+                placeholder = { Text("Введите ФИО", color = Color(0xFF999999)) },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                singleLine = true
+            )
 
-        DateField(
-            label = "Pickup Time",
-            value = state.timeSlot,
-            onClick = { showTimeSheet.value = true }
-        )
+            Spacer(modifier = Modifier.height(12.dp))
 
-        Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = state.phone,
+                onValueChange = { },
+                label = { Text("Телефон") },
+                placeholder = {
+                    Text(
+                        if (state.phone.isBlank()) "Из профиля" else "", color = Color(0xFF999999)
+                    )
+                },
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(12.dp),
+                singleLine = true,
+                enabled = false
+            )
 
-        PickupLocationCard()
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = "График аренды", style = MaterialTheme.typography.bodySmall.copy(
+                    color = MaterialTheme.colorScheme.secondary
+                )
+            )
 
-        PrimaryButton(
-            text = "Confirm Booking",
-            enabled = state.isConfirmEnabled,
-            onClick = { onIntent(PersonalDetailsIntent.ConfirmClicked) }
-        )
+            Spacer(modifier = Modifier.height(8.dp))
+
+            DateField(
+                label = "Дата получения",
+                value = state.date,
+                onClick = { showDatePicker.value = true })
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            DateField(
+                label = "Время получения",
+                value = state.timeSlot,
+                onClick = { showTimeSheet.value = true })
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            PickupLocationCard()
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            PrimaryButton(
+                text = "Подтвердить бронирование",
+                enabled = state.isConfirmEnabled,
+                onClick = { onIntent(PersonalDetailsIntent.ConfirmClicked) },
+            )
+        }
     }
 
     if (showTimeSheet.value) {
         ModalBottomSheet(
-            onDismissRequest = { showTimeSheet.value = false }
-        ) {
+            onDismissRequest = { showTimeSheet.value = false }) {
             TimeSlotSheet(
                 onSelect = { slot ->
                     onIntent(PersonalDetailsIntent.TimeSlotChanged(slot))
                     coroutineScope.launch {
                         showTimeSheet.value = false
                     }
-                }
-            )
+                })
         }
     }
 
     if (showDatePicker.value) {
         val datePickerState = rememberDatePickerState()
-        DatePickerDialog(
-            onDismissRequest = { showDatePicker.value = false },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        val millis = datePickerState.selectedDateMillis
-                        if (millis != null) {
-                            val localDate = Instant.ofEpochMilli(millis)
-                                .atZone(ZoneId.systemDefault())
-                                .toLocalDate()
-                            val formatted = localDate.toString()
-                            onIntent(PersonalDetailsIntent.DateChanged(formatted))
-                        }
-                        showDatePicker.value = false
+        DatePickerDialog(onDismissRequest = { showDatePicker.value = false }, confirmButton = {
+            TextButton(
+                onClick = {
+                    val millis = datePickerState.selectedDateMillis
+                    if (millis != null) {
+                        val localDate = Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault())
+                            .toLocalDate()
+                        val formatted = localDate.toString()
+                        onIntent(PersonalDetailsIntent.DateChanged(formatted))
                     }
-                ) {
-                    Text("OK")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDatePicker.value = false }) {
-                    Text("Cancel")
-                }
+                    showDatePicker.value = false
+                }) {
+                Text("ОК")
             }
-        ) {
+        }, dismissButton = {
+            TextButton(onClick = { showDatePicker.value = false }) {
+                Text("Отмена")
+            }
+        }) {
             DatePicker(state = datePickerState)
         }
     }
@@ -196,14 +185,13 @@ private fun DateField(
             .clickable(onClick = onClick)
     ) {
         Text(
-            text = label,
-            style = MaterialTheme.typography.bodySmall.copy(
+            text = label, style = MaterialTheme.typography.bodySmall.copy(
                 color = MaterialTheme.colorScheme.secondary
             )
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = if (value.isBlank()) "Select $label" else value,
+            text = if (value.isBlank()) "Выберите $label" else value,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 12.dp),
@@ -220,20 +208,16 @@ private fun PickupLocationCard() {
             .padding(vertical = 12.dp)
     ) {
         Text(
-            text = "Pickup Location",
-            style = MaterialTheme.typography.bodySmall.copy(
+            text = "Место получения", style = MaterialTheme.typography.bodySmall.copy(
                 color = MaterialTheme.colorScheme.secondary
             )
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "Summit Base Lodge, Counter #4",
-            style = MaterialTheme.typography.bodyMedium
+            text = "База Summit, Стойка №4", style = MaterialTheme.typography.bodyMedium
         )
         Text(
-            text = "View on map",
-            color = MaterialTheme.colorScheme.primary,
-            fontSize = 14.sp
+            text = "Показать на карте", color = MaterialTheme.colorScheme.primary, fontSize = 14.sp
         )
     }
 }
@@ -243,11 +227,7 @@ private fun TimeSlotSheet(
     onSelect: (String) -> Unit,
 ) {
     val slots = listOf(
-        "09:00–10:30",
-        "10:30–12:00",
-        "12:00–13:30",
-        "13:30–15:00",
-        "15:00–16:30"
+        "09:00–10:30", "10:30–12:00", "12:00–13:30", "13:30–15:00", "15:00–16:30"
     )
 
     Column(
@@ -256,7 +236,7 @@ private fun TimeSlotSheet(
             .padding(16.dp)
     ) {
         Text(
-            text = "Select Time",
+            text = "Выберите время",
             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold)
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -266,12 +246,9 @@ private fun TimeSlotSheet(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onSelect(slot) }
-                    .padding(vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+                    .padding(vertical = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(text = slot, modifier = Modifier.weight(1f))
             }
         }
     }
 }
-

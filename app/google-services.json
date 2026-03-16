@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450034600694",
+    "project_id": "skirentalapp-d62f0",
+    "storage_bucket": "skirentalapp-d62f0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450034600694:android:e40b2287184ce0ab4ffad7",
+        "android_client_info": {
+          "package_name": "ru.shkuratov.skirentalapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrpTqPezu9nGP5dScdUZET-OiUWhJwSd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
